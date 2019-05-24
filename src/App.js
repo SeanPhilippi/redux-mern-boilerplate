@@ -4,7 +4,8 @@ import store from './store';
 // this wrapper component connects your project to the redux store
 import { Provider } from 'react-redux';
 
-import
+import ClassComponent from './components/ClassComponent';
+import FunctionalComponent from './components/FunctionalComponent';
 
 class App extends Component {
   render() {
@@ -14,7 +15,7 @@ class App extends Component {
       <Provider store={store}>
         <div>
           <ClassComponent />
-          <FunctionalCopmonent />
+          <FunctionalComponent />
         </div>
       </Provider>
     );

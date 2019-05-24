@@ -1,5 +1,4 @@
 import React from 'react';
-import './ClassComponent.css';
 
 class ClassComponent extends React.PureComponent {
 

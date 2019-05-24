@@ -14,7 +14,7 @@ const store = createStore(
   compose(
     applyMiddleware(...middleware),
     // hooks up app to Redux Dev Tools chrome extension only if available
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() || compose
+    (window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()) || compose
   )
 )
 
