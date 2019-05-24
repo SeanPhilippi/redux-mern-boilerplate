@@ -1,22 +1,11 @@
 export const TYPES = {
-  SET_DESCRIPT: 'SET_DESCRIPT',
   SET_SEARCH_TEXT: 'SET_SEARCH_TEXT',
   SET_SEARCH_RESULTS: 'SET_SEARCH_RESULTS',
-  FETCH_MOVIE_LIST: 'FETCH_MOVIE_LIST',
-  SET_MOVIE_LIST: 'SET_MOVIE_LIST',
+  FETCH_LIST: 'FETCH_LIST',
+  SET_LIST: 'SET_LIST',
   ADD_TO_LIST: 'ADD_TO_LIST',
-  CLEAR_SEARCH_RESULTS: 'CLEAR_SEARCH_RESULTS',
-  REORDER_LIST: 'REORDER_LIST',
-  DELETE_MOVIE: 'DELETE_MOVIE',
-  DELETE_MOVIE_LIST: 'DELETE_MOVIE_LIST'
+  DELETE_ITEM: 'DELETE_ITEM',
 };
-
-export const setDescript = text => ({
-  type: TYPES.SET_DESCRIPT,
-  payload: {
-    text
-  }
-})
 
 export const setSearchText = text => ({
   type: TYPES.SET_SEARCH_TEXT,
@@ -25,6 +14,7 @@ export const setSearchText = text => ({
   }
 });
 
+// example use of getState() and dispatch() from redux-thunk
 export const getResults = (num) => (dispatch, getState) => {
   const { apiUrl, apiKey, searchText } = getState();
 
@@ -36,58 +26,30 @@ export const getResults = (num) => (dispatch, getState) => {
     .catch(err => console.error(err));
 }
 
-export const setSearchResults = data => ({
+export const setSearchResults = results => ({
   type: TYPES.SET_SEARCH_RESULTS,
   payload: {
-    data
+    results
   }
 });
 
-export const fetchList = () => (dispatch, getState) => {
-  const { username } = getState();
-  console.log('username', username)
-  fetch(`/${username}/list`)
-    .then(res => res.json())
-    .then(data => {
-      console.log('username', username);
-      console.log('data', data);
-      dispatch(setFetchedList(data))
-    })
-    .catch(err => console.error(err));
-}
-
-export const setFetchedList = data => ({
-  type: TYPES.SET_MOVIE_LIST,
+export const setList = data => ({
+  type: TYPES.SET_LIST,
   payload: {
     data
   }
 });
 
-export const addToList = movie => ({
+export const addToList = item => ({
   type: TYPES.ADD_TO_LIST,
   payload: {
-    movie
+    item
   }
 });
 
-export const clearSearchResults = () => ({
-  type: TYPES.CLEAR_SEARCH_RESULTS
-})
-
-export const orderList = (oldIndex, newIndex) => ({
-  type: TYPES.REORDER_LIST,
+export const deleteItem = item => ({
+  type: TYPES.DELETE_ITEM,
   payload: {
-    oldIndex, newIndex
+    item
   }
 })
-
-export const deleteMovie = movie => ({
-  type: TYPES.DELETE_MOVIE,
-  payload: {
-    movie
-  }
-})
-
-export const deleteList = () => ({
-  type: TYPES.DELETE_MOVIE_LIST
-});
